@@ -20,6 +20,10 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
+import org.aplas.soccermatch.databinding.ActivityMainBinding;
+import org.aplas.soccermatch.model.Player;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -61,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
 
         homeDialog = getInputPlayerDialog(homePlayer, homePlayerList, homePlayerNumber);
         awayDialog = getInputPlayerDialog(awayPlayer, awayPlayerList, awayPlayerNumber);
+
+
+
 
         addHomePlayer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +112,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        Player player = new Player("Barcelona", "Real Madrid", R.drawable.fcb, R.drawable.rm);
+        binding.setPlayer(player);
     }
 
     private AlertDialog getInputPlayerDialog(ArrayList<String> list, ListView listView, TextView playerNumber) {
